@@ -1,0 +1,12 @@
+transformers==4.27.4
+lightning==2.0.1
+librosa
+pyctcdecode
+omegaconf
+ninja==1.11.1
+evaluate
+jiwer
+tensorboard
+tensorboardX
+# Need to install below
+# pip install https://github.com/kpu/kenlm/archive/master.zip
