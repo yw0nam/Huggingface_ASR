@@ -42,7 +42,7 @@ def main(config):
         None
     """
     data_pathes = sorted(glob(os.path.join(config.root_dir, '*/*/*.pcm')))
-    
+    # data_pathes = sorted(glob(os.path.join(config.root_dir, '*.pcm')))
     print("\nConverting Start")
     
     for path in tqdm(data_pathes):

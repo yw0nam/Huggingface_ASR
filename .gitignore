@@ -1,2 +1,3 @@
 data/*
 models_zoo/
+__pycache__

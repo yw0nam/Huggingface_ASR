@@ -1,7 +1,6 @@
 from transformers import WhisperFeatureExtractor
-from datasets import load_dataset
 from transformers import WhisperTokenizer
-from datasets import Audio
+from datasets import load_dataset, Audio
 
 def prepare_dataset(batch, tokenizer, feature_extractor):
     # load and resample audio data from 48 to 16kHz
@@ -21,7 +20,7 @@ def main():
     tokenizer = WhisperTokenizer.from_pretrained("openai/whisper-medium", language="ko", task="transcribe")
 
     mapped_dataset = dataset.map(lambda x: prepare_dataset(x, tokenizer, feature_extractor), remove_columns=dataset.column_names["train"], num_proc=16)
-    mapped_dataset.save_to_disk('./data/Bingsu_zeroth-korean', num_proc=4)
+    mapped_dataset.save_to_disk('/home/spow12/codes/2023_2nd_quarter/ASR/data/Bingsu_zeroth-korean', num_proc=4)
 
 if __name__ == '__main__':
     main()
