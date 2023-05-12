@@ -11,8 +11,8 @@ def define_argparser():
     p = argparse.ArgumentParser()
     p.add_argument('--wav_path', type=str, required=True)
     p.add_argument('--out_path', type=str, required=True)
-    p.add_argument('--model_address', type=str, required=True)
-    p.add_argument('--processor_address', type=str, required=True)
+    p.add_argument('--model_address', type=str, default='openai/whisper-medium')
+    p.add_argument('--processor_address', type=str, default='spow12/whisper-medium-ksponspeech')
     p.add_argument('--gpu', type=str, default='cuda', choices=['cuda', 'cpu'])
     config = p.parse_args()
     return config
