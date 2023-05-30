@@ -8,5 +8,6 @@ evaluate
 jiwer
 tensorboard
 tensorboardX
+quickspacer
 # Need to install below
 # pip install https://github.com/kpu/kenlm/archive/master.zip

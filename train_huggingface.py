@@ -1,8 +1,8 @@
 from transformers import WhisperProcessor, WhisperForConditionalGeneration
-import torch, re
+import re
 from transformers import Seq2SeqTrainer, Seq2SeqTrainingArguments
 from datasets import load_from_disk
-from utils import compute_metrics, DataCollatorSpeechSeq2SeqWithPadding, DataCollatorSpeechSeq2SeqWithPadding_from_npy, str2bool
+from utils import compute_metrics, DataCollatorSpeechSeq2SeqWithPadding, DataCollatorSpeechSeq2SeqWithPadding_from_npy
 import os
 import argparse
 import evaluate

@@ -1,4 +1,6 @@
 import torch
+import os
+import re
 import argparse
 import gc
 import numpy as np
@@ -93,7 +95,8 @@ def prepare_dataset_aihub(batch, tokenizer, feature_extractor, sr=16000):
     audio, _ = librosa.load(batch['audio_path'], sr=sr)
     npy_path = batch['audio_path'].replace('wav', 'npy')
     input_features = feature_extractor(audio, sampling_rate=sr).input_features[0]
-    np.save(npy_path, input_features)
+    if not os.path.exists():
+        np.save(npy_path, input_features)
     del input_features
     # compute log-Mel input features from input audio array 
 
@@ -112,3 +115,20 @@ def str2bool(v):
         return False
     else:
         raise argparse.ArgumentTypeError('Boolean value expected.')
+    
+def remove_repeated_text(text, comp=re.compile('\(.*\)/\(.*\)')):
+    """ remove repeated text 
+    Here is example
+    Input:  'o/ b/ 그게 (0.1프로)/(영 점 일 프로) 가정의 아이들과 가정의 모습이야? b/'
+    Output: '그게 0.1프로 가정의 아이들과 가정의 모습이야?'
+    Args:
+        text (str): string from pandas Series
+    Returns:
+        text (str): Removed text 
+    """
+    matched_text = comp.search(text)
+    if matched_text:
+        text = text.replace(matched_text[0], re.sub('\(|\)', "", matched_text[0].split('/')[0]))
+    text = re.sub("o/|c/|n/|N/|u/|l/|b/|\*|\+|/", " ", text)
+    
+    return text.rstrip()
