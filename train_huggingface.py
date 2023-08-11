@@ -22,6 +22,7 @@ def define_argparser():
     p.add_argument('--total_step', type=int, default=20000)
     p.add_argument('--warmup_ratio', type=float, default=.2)
     p.add_argument('--max_length', type=int, default=225)
+    p.add_argument('--remove_text', type=str, default='n')
     p.add_argument('--deepspeed', type=str)
     p.add_argument('--local_rank', type=int)
     config = p.parse_args()
@@ -53,7 +54,8 @@ def main(config):
     else:
         data_collator = DataCollatorSpeechSeq2SeqWithPadding_from_npy(processor=processor)
         dataset = dataset.rename_column("npy_path",'input_features')
-        dataset = dataset.map(lambda x: remove_not_text(x, processor.tokenizer), num_proc=8)
+        if config.remove_text == 'y': # For clena data, These texts are already removed in denoised data.
+            dataset = dataset.map(lambda x: remove_not_text(x, processor.tokenizer), num_proc=8)
         
     wer_metric = evaluate.load("wer")
     cer_metric = evaluate.load("cer")

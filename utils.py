@@ -95,7 +95,7 @@ def prepare_dataset_aihub(batch, tokenizer, feature_extractor, sr=16000):
     audio, _ = librosa.load(batch['audio_path'], sr=sr)
     npy_path = batch['audio_path'].replace('wav', 'npy')
     input_features = feature_extractor(audio, sampling_rate=sr).input_features[0]
-    if not os.path.exists():
+    if not os.path.exists(npy_path):
         np.save(npy_path, input_features)
     del input_features
     # compute log-Mel input features from input audio array 

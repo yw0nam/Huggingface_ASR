@@ -20,7 +20,7 @@ def define_argparser():
     p = argparse.ArgumentParser()
     p.add_argument('--clean_root', type=str, default='/data/ai_hub/synthesized_speech_with_noise_eval/CleanSpeech_training/', 
                 help="Clean speech data root for making reference wav pathes")
-    p.add_argument('--noisy_root', type=str, default='/data/ai_hub/denoised_from_synthesized/enhanced_0126/', 
+    p.add_argument('--noisy_root', type=str, default='/data/ai_hub/denoised_synthesized_speech_with_noise_eval/enhanced_0126/', 
                 help='Noisy speech data root for reading the noisy wav')
     p.add_argument('--metadata_path', type=str, default='/data/ai_hub/AI-hub_korean_speech/scripts/eval_clean.trn',
                 help='metadata path for parsing wav pathes')

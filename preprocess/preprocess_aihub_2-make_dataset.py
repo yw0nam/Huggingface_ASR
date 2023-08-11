@@ -4,15 +4,13 @@ import argparse, os
 from datasets import Dataset, DatasetDict
 from transformers import WhisperFeatureExtractor, WhisperTokenizer
 import sys
-import re
 from tqdm import tqdm
 import gc
-from utils import remove_repeated_text
 
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, root_dir)
 
-from utils import prepare_dataset_aihub
+from utils import prepare_dataset_aihub, remove_repeated_text
 
 def define_argparser():
     """
@@ -56,6 +54,7 @@ def main(config):
                                 num_proc=8,
                                 )
     mapped_dataset.save_to_disk(config.out_path, num_proc=8)
+
 if __name__ == '__main__':
     config = define_argparser()
     main(config)
