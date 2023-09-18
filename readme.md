@@ -1,6 +1,6 @@
 # Finetunning ASR models
 
-I-BRICKS - Auto Speech Recognition using huggingface
+Auto Speech Recognition using huggingface
 
 # Quickstart
 
